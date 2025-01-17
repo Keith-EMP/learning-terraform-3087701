@@ -32,7 +32,7 @@ resource "aws_instance" "blog" {
   }
 }
 
-resource "aws_security_group" "blog {
+resource "aws_security_group" "blog" {
   name = "blog"
   description = "allow http and https in. allow everything out"
 
