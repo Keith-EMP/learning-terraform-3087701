@@ -55,7 +55,7 @@ module "blog_alb" {
   load_balancer_type = "application"
 
   vpc_id             = module.blog_vpc.vpc_id
-  subnets            = [module.blog_vpc.public_subnets]
+  subnets            = module.blog_vpc.public_subnets
   security_groups    = [module.blog_sg.security_group_id]
 
   target_groups = [
@@ -65,8 +65,10 @@ module "blog_alb" {
       backend_port     = 80
       target_type      = "instance"
       targets = {
-        target_id = aws_instance.blog.id
-        port = 80
+        my_target{
+          target_id = aws_instance.blog.id
+          port = 80
+        }
       }
     }
   ]
